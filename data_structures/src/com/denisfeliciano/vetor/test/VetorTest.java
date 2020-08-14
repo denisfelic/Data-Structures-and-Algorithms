@@ -115,6 +115,65 @@ public class VetorTest {
 		assertEquals(-1, posicaoElementoNaoExistente2);
 	}
 	
+	@Test
+	public void deveAtribuirUmElementoNaPrimeiraPosicaoDoVetor() {
+		
+		Vetor vetor = new Vetor(10);
+		
+		vetor.adiciona("B");
+		vetor.adiciona("C");
+		vetor.adiciona("D");
+		vetor.adiciona("E");	
+		vetor.adiciona("F");
+		vetor.adiciona("G");
+		
+		vetor.adiciona(0,"A");
+
+		
+		assertEquals(7, vetor.getQuantidadeDeItems());
+		assertEquals("A", vetor.getElemento(0));
+		assertEquals("B", vetor.getElemento(1));
+	}
 	
+	
+	@Test
+	public void deveAtribuirElementoNaUltimaPosicaoValidaDoVetor() {
+		
+		Vetor vetor = new Vetor(10);
+		
+		vetor.adiciona("B");
+		vetor.adiciona("C");
+		vetor.adiciona("D");
+		vetor.adiciona("E");	
+		vetor.adiciona("F");
+		vetor.adiciona("G");
+		
+		vetor.adiciona(5,"A");
+
+		System.out.println(vetor);
+		assertEquals(7, vetor.getQuantidadeDeItems());
+		assertEquals("B", vetor.getElemento(0));
+		assertEquals("C", vetor.getElemento(1));
+		assertEquals("A", vetor.getElemento(5));
+		assertEquals("G", vetor.getElemento(6));
+	}
+	
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void deveLancarExcecaoCasoPosicaoExcedaNumeroDeItemsPresentes() {
+		
+		Vetor vetor = new Vetor(10);
+		
+		vetor.adiciona("B");
+		vetor.adiciona("C");
+		vetor.adiciona("D");
+		vetor.adiciona("E");	
+		vetor.adiciona("F");
+		vetor.adiciona("G");
+		
+		vetor.adiciona(6,"A");
+
+	
+	}
 
 }

@@ -27,6 +27,22 @@ public class Vetor {
 
 	/**
 	 * 
+	 * @param posicao
+	 * @param elemento
+	 */
+	public void adiciona(int posicao, String elemento) {
+		verificaSeIndiceDoVetorEvalido(posicao);
+		
+		for (int i = this.quantidadeItemsNoVetor; i >= posicao; i--) {
+			this.elementos[i + 1] = this.elementos[i];
+		}
+		this.elementos[posicao] = elemento;
+		this.quantidadeItemsNoVetor++;
+
+	}
+
+	/**
+	 * 
 	 */
 	private void verificaSePodeAdicionarElementoNoVetor() {
 		if (quantidadeItemsNoVetor >= CAPACIDADE_MAX_ITEMS_VETOR)
@@ -57,11 +73,11 @@ public class Vetor {
 	}
 
 	public int elementExiste(String elementoProcurado) {
-		
-		for (int i=0; i< this.quantidadeItemsNoVetor; i++)
+
+		for (int i = 0; i < this.quantidadeItemsNoVetor; i++)
 			if (this.elementos[i].equals(elementoProcurado))
 				return i;
-		
+
 		return -1;
 	}
 
