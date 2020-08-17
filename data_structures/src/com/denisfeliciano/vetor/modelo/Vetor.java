@@ -1,16 +1,22 @@
 package com.denisfeliciano.vetor.modelo;
 
+import java.lang.reflect.Array;
 import java.util.Arrays;
 
-public class Vetor {
+public class Vetor<T> {
 
 	private static final int CAPACIDADE_NOVA = 10;
-	private Object[] elementos;
+	private T[] elementos;
 	private int quantidadeItemsNoVetor = 0;
 	private int CapacidadeMaximaItemsDoVetor;
 
 	public Vetor(int capacidade) {
-		this.elementos = new Object[capacidade];
+		this.elementos = (T[]) new Object[capacidade];
+		this.CapacidadeMaximaItemsDoVetor = capacidade;
+	}
+
+	public Vetor(int capacidade, Class tipoClasse) {
+		this.elementos = (T[]) Array.newInstance(tipoClasse, capacidade);
 		this.CapacidadeMaximaItemsDoVetor = capacidade;
 	}
 
@@ -18,7 +24,7 @@ public class Vetor {
 		return this.CapacidadeMaximaItemsDoVetor;
 	}
 
-	public void adiciona(Object elemento) {
+	public void adiciona(T elemento) {
 		verificaCapacidadeVetor();
 		verificaElementoValido(elemento);
 
@@ -32,7 +38,7 @@ public class Vetor {
 	 * @param posicao
 	 * @param elemento
 	 */
-	public void adiciona(int posicao, Object elemento) {
+	public void adiciona(int posicao, T elemento) {
 		verificaSeIndiceDoVetorEvalido(posicao);
 		verificaElementoValido(elemento);
 
@@ -44,7 +50,7 @@ public class Vetor {
 
 	}
 
-	private void verificaElementoValido(Object object) {
+	private void verificaElementoValido(T object) {
 		if (object == null)
 			throw new IllegalArgumentException("O objeto não pode ser nulo!");
 
@@ -65,7 +71,7 @@ public class Vetor {
 	 * 
 	 */
 	private void adicionaMaisDezDeCapacidadeTotal() {
-		Object[] newElements = new Object[this.CapacidadeMaximaItemsDoVetor + CAPACIDADE_NOVA];
+		T[] newElements = (T[]) new Object[this.CapacidadeMaximaItemsDoVetor + CAPACIDADE_NOVA];
 		this.CapacidadeMaximaItemsDoVetor = newElements.length;
 
 		for (int i = 0; i < this.elementos.length; i++) {

@@ -317,7 +317,7 @@ public class VetorTest {
 
 	@Test
 	public void deveAdicionarUmObjetoDeUmTipoEspecificoNoVetor() {
-		Vetor vetor = new Vetor(5);
+		Vetor<TestPessoa> vetor = new Vetor(5);
 
 		TestPessoa p1 = new TestPessoa(55, "Maria", "66214442");
 		TestPessoa p2 = new TestPessoa(23, "Joao", "41232133");
@@ -327,6 +327,7 @@ public class VetorTest {
 		vetor.adiciona(p1);
 		vetor.adiciona(p2);
 		vetor.adiciona(p3);
+		
 
 		assertEquals(3, vetor.getQuantidadeDeItems());
 		assertEquals(p1, vetor.getElemento(0));
