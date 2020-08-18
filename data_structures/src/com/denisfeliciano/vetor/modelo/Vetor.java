@@ -11,17 +11,15 @@ public class Vetor<T> {
 	private int CapacidadeMaximaItemsDoVetor;
 
 	public Vetor(int capacidade) {
+		verificaCapacidadeVetor(capacidade);
 		this.elementos = (T[]) new Object[capacidade];
 		this.CapacidadeMaximaItemsDoVetor = capacidade;
 	}
 
 	public Vetor(int capacidade, Class tipoClasse) {
+		verificaCapacidadeVetor(capacidade);
 		this.elementos = (T[]) Array.newInstance(tipoClasse, capacidade);
 		this.CapacidadeMaximaItemsDoVetor = capacidade;
-	}
-
-	public int getCapacidadeMaximaElementosAtual() {
-		return this.CapacidadeMaximaItemsDoVetor;
 	}
 
 	public void adiciona(T elemento) {
@@ -50,6 +48,77 @@ public class Vetor<T> {
 
 	}
 
+	public void remove(int index) {
+		verificaSeIndiceDoVetorEvalido(index);
+		this.elementos[index] = null;
+		ordenarVetorApartirDaPosicao(index);
+	}
+
+	public void remove(T elemento) {
+		int posicaoElemento = this.getElemento(elemento);
+		if (!(posicaoElemento > -1)) {
+			throw new IllegalArgumentException("Impossivel remover o elemento, pois o mesmo" + "não existe no Vetor!");
+		}
+		this.elementos[posicaoElemento] = null;
+		ordenarVetorApartirDaPosicao(posicaoElemento);
+
+	}
+
+	public int getCapacidadeMaximaElementosAtual() {
+		return this.CapacidadeMaximaItemsDoVetor;
+	}
+
+	public Integer getTotalDeElementos() {
+		return this.quantidadeItemsNoVetor;
+	}
+
+	public T getElemento(int indiceElemento) {
+		verificaSeIndiceDoVetorEvalido(indiceElemento);
+		return this.elementos[indiceElemento];
+	}
+
+	public int getElemento(T elementoProcurado) {
+
+		for (int i = 0; i < this.quantidadeItemsNoVetor; i++)
+			if (this.elementos[i].equals(elementoProcurado))
+				return i;
+
+		return -1;
+	}
+
+	public boolean contains(T elementoProcurado) {
+		return getElemento(elementoProcurado) >= 0;
+	}
+
+	@Override
+	public String toString() {
+		String toString = "[";
+		for (T e : this.elementos) {
+			if (e != null) {
+				toString = toString.concat(e.toString());
+				toString = toString.concat(", ");
+			}
+
+			if (e == null) {
+				toString = toString.substring(0, toString.length() - 2);
+				toString = toString.concat("]");
+				break;
+			}
+
+		}
+		return toString;
+	}
+
+	/**
+	 * @param capacidade
+	 * @throws IllegalArgumentException
+	 */
+	private void verificaCapacidadeVetor(int capacidade) throws IllegalArgumentException {
+		if (capacidade < 1) {
+			throw new IllegalArgumentException("Capacidade do vetor deve ser maior que \"0\".");
+		}
+	}
+
 	private void verificaElementoValido(T object) {
 		if (object == null)
 			throw new IllegalArgumentException("O objeto não pode ser nulo!");
@@ -71,7 +140,8 @@ public class Vetor<T> {
 	 * 
 	 */
 	private void adicionaMaisDezDeCapacidadeTotal() {
-		T[] newElements = (T[]) new Object[this.CapacidadeMaximaItemsDoVetor + CAPACIDADE_NOVA];
+		T[] ts = (T[]) new Object[this.CapacidadeMaximaItemsDoVetor + CAPACIDADE_NOVA];
+		T[] newElements = ts;
 		this.CapacidadeMaximaItemsDoVetor = newElements.length;
 
 		for (int i = 0; i < this.elementos.length; i++) {
@@ -81,15 +151,6 @@ public class Vetor<T> {
 		this.elementos = newElements;
 	}
 
-	public Integer getQuantidadeDeItems() {
-		return this.quantidadeItemsNoVetor;
-	}
-
-	public Object getElemento(int indiceElemento) {
-		verificaSeIndiceDoVetorEvalido(indiceElemento);
-		return this.elementos[indiceElemento];
-	}
-
 	/**
 	 * @param indiceElemento
 	 */
@@ -97,40 +158,6 @@ public class Vetor<T> {
 		if (indiceElemento < 0 || indiceElemento >= quantidadeItemsNoVetor)
 			throw new IllegalArgumentException(
 					"Argumento invalido, o indice " + indiceElemento + " não existe no Vetor ou " + "está nulo.");
-	}
-
-	@Override
-	public String toString() {
-		String toString = "[";
-		for (Object e : this.elementos) {
-			if (e != null) {
-				toString = toString.concat(e.toString());
-				toString = toString.concat(", ");
-			}
-
-			if (e == null) {
-				toString = toString.substring(0, toString.length() - 2);
-				toString = toString.concat("]");
-				break;
-			}
-
-		}
-		return toString;
-	}
-
-	public int getElemento(Object elementoProcurado) {
-
-		for (int i = 0; i < this.quantidadeItemsNoVetor; i++)
-			if (this.elementos[i].equals(elementoProcurado))
-				return i;
-
-		return -1;
-	}
-
-	public void remove(int index) {
-		verificaSeIndiceDoVetorEvalido(index);
-		this.elementos[index] = null;
-		ordenarVetorApartirDaPosicao(index);
 	}
 
 	/**
@@ -144,14 +171,17 @@ public class Vetor<T> {
 		this.quantidadeItemsNoVetor--;
 	}
 
-	public void remove(Object elemento) {
-		int posicaoElemento = this.getElemento(elemento);
-		if (!(posicaoElemento > -1)) {
-			throw new IllegalArgumentException("Impossivel remover o elemento, pois o mesmo" + "não existe no Vetor!");
-		}
-		this.elementos[posicaoElemento] = null;
-		ordenarVetorApartirDaPosicao(posicaoElemento);
+	public Integer lastIndexOf(T object) {
+		for (int i = this.quantidadeItemsNoVetor - 1; i >= 0; i--)
+			if (this.elementos[i].equals(object))
+				return i;
 
+		return -1;
+	}
+
+	public void clear() {
+		this.elementos = (T[]) new Object[this.CapacidadeMaximaItemsDoVetor];
+		this.quantidadeItemsNoVetor = 0;
 	}
 
 }
