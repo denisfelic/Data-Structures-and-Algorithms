@@ -12,8 +12,8 @@ public class VetorTest {
 	@Test
 	public void deveCriarUmVetorComCapacidadeMaiorQueZero() {
 
-		Vetor vetor = new Vetor(5);
-		Vetor vetor2 = new Vetor(1);
+		Vetor<String> vetor = new Vetor<String>(5);
+		Vetor<String> vetor2 = new Vetor<String>(1);
 
 		assertEquals(5, vetor.getCapacidadeMaximaElementosAtual());
 		assertEquals(1, vetor2.getCapacidadeMaximaElementosAtual());
@@ -21,18 +21,18 @@ public class VetorTest {
 
 	@Test(expected = IllegalArgumentException.class)
 	public void deveLancarExcecaoCasoCapacidadeSejaMenorQue1() {
-		Vetor veto2 = new Vetor(-1);
+		Vetor<String> veto2 = new Vetor<String>(-1);
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void deveLancarExcecaoCasoCapacidadeSejaMenoIgualZero() {
-		Vetor veto2 = new Vetor(0);
+		Vetor<String> veto2 = new Vetor<String>(0);
 	}
 
 	@Test
 	public void deveAdicionarUmElementoAoFinalDoVetor() {
 
-		Vetor vetor = new Vetor(2);
+		Vetor<String> vetor = new Vetor<String>(2);
 
 		vetor.adiciona("Denis");
 		vetor.adiciona("Camila");
@@ -45,7 +45,7 @@ public class VetorTest {
 	@Test
 	public void deveImprimirTodosOsElementosDoVetor() {
 
-		Vetor vetor = new Vetor(5);
+		Vetor<String> vetor = new Vetor<String>(5);
 		vetor.adiciona("Elemento 1");
 		vetor.adiciona("Elemento 2");
 		vetor.adiciona("Elemento 3");
@@ -65,7 +65,7 @@ public class VetorTest {
 	@Test(expected = IllegalArgumentException.class)
 	public void deveDarExcecaoCasoUsuarioPasseArgumentoMaiorQueQuantidadeDeItemsPresentesNoVetor() {
 
-		Vetor vetor = new Vetor(2);
+		Vetor<String> vetor = new Vetor<String>(2);
 
 		vetor.adiciona("Elemento 1");
 		vetor.adiciona("Elemento 2");
@@ -78,7 +78,7 @@ public class VetorTest {
 	@Test(expected = IllegalArgumentException.class)
 	public void deveDarExcecaoCasoUsuarioBusqueElementoNoVetorEpasseArgumentoMenorQueZero() {
 
-		Vetor vetor = new Vetor(2);
+		Vetor<String> vetor = new Vetor<String>(2);
 
 		vetor.adiciona("Elemento 1");
 		vetor.adiciona("Elemento 2");
@@ -91,7 +91,7 @@ public class VetorTest {
 	@Test
 	public void deveRetornarPosicaoElementoPassadoComoArgumento() {
 
-		Vetor vetor = new Vetor(3);
+		Vetor<String> vetor = new Vetor<String>(3);
 		vetor.adiciona("Denis");
 		vetor.adiciona("Lucas");
 		vetor.adiciona("Kaique");
@@ -104,7 +104,7 @@ public class VetorTest {
 	@Test
 	public void deveRetornarMenos1CasoNaoEncontreOElemento() {
 
-		Vetor vetor = new Vetor(3);
+		Vetor<String> vetor = new Vetor<String>(3);
 		vetor.adiciona("Denis");
 		vetor.adiciona("Lucas");
 		vetor.adiciona("Kaique");
@@ -120,7 +120,7 @@ public class VetorTest {
 	@Test
 	public void deveAtribuirUmElementoNaPrimeiraPosicaoDoVetor() {
 
-		Vetor vetor = new Vetor(10);
+		Vetor<String> vetor = new Vetor<String>(10);
 
 		vetor.adiciona("B");
 		vetor.adiciona("C");
@@ -139,7 +139,7 @@ public class VetorTest {
 	@Test
 	public void deveAtribuirElementoNaUltimaPosicaoValidaDoVetor() {
 
-		Vetor vetor = new Vetor(10);
+		Vetor<String> vetor = new Vetor<String>(10);
 
 		vetor.adiciona("B");
 		vetor.adiciona("C");
@@ -160,7 +160,7 @@ public class VetorTest {
 	@Test(expected = IllegalArgumentException.class)
 	public void deveLancarExcecaoCasoPosicaoExcedaNumeroDeItemsPresentes() {
 
-		Vetor vetor = new Vetor(10);
+		Vetor<String> vetor = new Vetor<String>(10);
 
 		vetor.adiciona("B");
 		vetor.adiciona("C");
@@ -176,7 +176,7 @@ public class VetorTest {
 	@Test
 	public void deveAdicionarMais10SlotsNoVetorCasoExcederQuantidadeMaxima() {
 
-		Vetor vetor = new Vetor(5);
+		Vetor<String> vetor = new Vetor<String>(5);
 
 		vetor.adiciona("1");
 		vetor.adiciona("2");
@@ -196,7 +196,7 @@ public class VetorTest {
 	@Test
 	public void deveRemoverElementoDoVetorEmQualquerPosicaoValida() {
 
-		Vetor vetor = new Vetor(5);
+		Vetor<String> vetor = new Vetor<String>(5);
 
 		vetor.adiciona("A");
 		vetor.adiciona("B");
@@ -217,7 +217,7 @@ public class VetorTest {
 	@Test(expected = IllegalArgumentException.class)
 	public void deveLancarExcecaoCasoArgumentoRemoverElementoNaoExistaNoVetor() {
 
-		Vetor vetor = new Vetor(2);
+		Vetor<String> vetor = new Vetor<String>(2);
 		vetor.adiciona("A");
 		vetor.adiciona("B");
 		vetor.remove(5);
@@ -225,7 +225,7 @@ public class VetorTest {
 
 	@Test
 	public void deveRemoverPrimeiroElementoExistenteNoVetor() {
-		Vetor vetor = new Vetor(5);
+		Vetor<String> vetor = new Vetor<String>(5);
 
 		vetor.adiciona("A");
 		vetor.adiciona("B");
@@ -247,7 +247,7 @@ public class VetorTest {
 
 	@Test(expected = IllegalArgumentException.class)
 	public void deveLancarExcecaoCasoTenteRemoverItemInexistente() {
-		Vetor vetor = new Vetor(5);
+		Vetor<String> vetor = new Vetor<String>(5);
 
 		vetor.adiciona("A");
 		vetor.adiciona("B");
@@ -258,7 +258,7 @@ public class VetorTest {
 
 	@Test
 	public void deveAceitarElementosDoTipoInt() {
-		Vetor vetor = new Vetor(5);
+		Vetor<Integer> vetor = new Vetor<Integer>(5);
 		vetor.adiciona(5);
 		vetor.adiciona(7);
 		vetor.adiciona(2);
@@ -271,7 +271,7 @@ public class VetorTest {
 
 	@Test
 	public void deveAceitarElementosDoTipoBoolean() {
-		Vetor vetor = new Vetor(5);
+		Vetor<Boolean> vetor = new Vetor<Boolean>(5);
 		vetor.adiciona(true);
 		vetor.adiciona(false);
 		vetor.adiciona(true);
@@ -284,7 +284,7 @@ public class VetorTest {
 
 	@Test
 	public void deveRemoverElementosDoTipoBoolean() {
-		Vetor vetor = new Vetor(5);
+		Vetor<Boolean> vetor = new Vetor<Boolean>(5);
 		vetor.adiciona(true);
 		vetor.adiciona(false);
 		vetor.adiciona(true);
@@ -298,7 +298,7 @@ public class VetorTest {
 
 	@Test(expected = IllegalArgumentException.class)
 	public void naoDeveAceitarValoresNulos() {
-		Vetor vetor = new Vetor(5);
+		Vetor<String> vetor = new Vetor<String>(5);
 		vetor.adiciona(null);
 		vetor.adiciona(null);
 		vetor.adiciona(null);
@@ -329,7 +329,7 @@ public class VetorTest {
 
 	@Test
 	public void deveAdicionarUmObjetoDeUmTipoEspecificoNoVetor() {
-		Vetor<TestPessoa> vetor = new Vetor(5);
+		Vetor<TestPessoa> vetor = new Vetor<TestPessoa>(5);
 
 		TestPessoa p1 = new TestPessoa(55, "Maria", "66214442");
 		TestPessoa p2 = new TestPessoa(23, "Joao", "41232133");
@@ -348,7 +348,7 @@ public class VetorTest {
 
 	@Test
 	public void deveRemoverObjetoDeUmTipoEspecificoNoVetor() {
-		Vetor vetor = new Vetor(5);
+		Vetor<TestPessoa> vetor = new Vetor<TestPessoa>(5);
 
 		TestPessoa p1 = new TestPessoa(55, "Maria", "66214442");
 		TestPessoa p2 = new TestPessoa(23, "Joao", "41232133");
@@ -368,7 +368,7 @@ public class VetorTest {
 
 	@Test
 	public void deveRetornarTrueCasoTenhaAoMenosUmElementNoVetor() {
-		Vetor<TestPessoa> vetor = new Vetor(5);
+		Vetor<TestPessoa> vetor = new Vetor<TestPessoa>(5);
 
 		TestPessoa p1 = new TestPessoa(23, "Marcos", "3424342");
 		TestPessoa p2 = new TestPessoa(22, "Elena", "23123");
@@ -387,7 +387,7 @@ public class VetorTest {
 	@Test
 	public void deveRetornarFalseCasoElementoNaoEstejaContidoNoVetor() {
 
-		Vetor vetor = new Vetor(5);
+		Vetor<TestPessoa> vetor = new Vetor<TestPessoa>(5);
 
 		TestPessoa p1 = new TestPessoa(23, "Marcos", "3424342");
 		TestPessoa p2 = new TestPessoa(22, "Elena", "23123");
@@ -407,7 +407,7 @@ public class VetorTest {
 
 	@Test
 	public void deveRetornarIndiceDaUltimaOcorrenciaCasoExistaNoVetor() {
-		Vetor<String> vetor = new Vetor(5);
+		Vetor<String> vetor = new Vetor<String>(5);
 
 		vetor.adiciona("A");
 		vetor.adiciona("B");
@@ -420,7 +420,7 @@ public class VetorTest {
 
 	@Test
 	public void deveRetornaMenosUmCasoNaoEnconterNenhumaOcorrenciaNoVetor() {
-		Vetor<String> vetor = new Vetor(5);
+		Vetor<String> vetor = new Vetor<String>(5);
 
 		vetor.adiciona("A");
 		vetor.adiciona("B");
@@ -433,7 +433,7 @@ public class VetorTest {
 
 	@Test
 	public void deveRemoverTodosElementosDoVetor() {
-		Vetor<String> vetor = new Vetor(10);
+		Vetor<String> vetor = new Vetor<String>(10);
 
 		vetor.adiciona("A");
 		vetor.adiciona("B");
@@ -454,7 +454,7 @@ public class VetorTest {
 	@Test
 	public void deveAdicionar30ItemsNoVetor() {
 
-		Vetor vetor = new Vetor(30);
+		Vetor<TestPessoa> vetor = new Vetor<TestPessoa>(30);
 
 		for (int i = 0; i < 30; i++) {
 			vetor.adiciona(new TestPessoa(i + 1, "Test" + i, "00321-" + i));

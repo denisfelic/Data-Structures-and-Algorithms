@@ -3,24 +3,15 @@ package com.denisfeliciano.vetor.modelo;
 import java.lang.reflect.Array;
 import java.util.Arrays;
 
-public class Vetor<T> {
+import com.denisfeliciano.estrutura.generica.EstruturaDadosGenerica;
 
-	private static final int CAPACIDADE_NOVA = 10;
-	private T[] elementos;
-	private int quantidadeItemsNoVetor = 0;
-	private int CapacidadeMaximaItemsDoVetor;
+public class Vetor<T> extends EstruturaDadosGenerica<T> {
 
 	public Vetor(int capacidade) {
-		verificaCapacidadeVetor(capacidade);
-		this.elementos = (T[]) new Object[capacidade];
-		this.CapacidadeMaximaItemsDoVetor = capacidade;
+		super(capacidade);
+		// TODO Auto-generated constructor stub
 	}
 
-	public Vetor(int capacidade, Class tipoClasse) {
-		verificaCapacidadeVetor(capacidade);
-		this.elementos = (T[]) Array.newInstance(tipoClasse, capacidade);
-		this.CapacidadeMaximaItemsDoVetor = capacidade;
-	}
 
 	public void adiciona(T elemento) {
 		verificaCapacidadeVetor();
@@ -64,14 +55,7 @@ public class Vetor<T> {
 
 	}
 
-	public int getCapacidadeMaximaElementosAtual() {
-		return this.CapacidadeMaximaItemsDoVetor;
-	}
-
-	public Integer getTotalDeElementos() {
-		return this.quantidadeItemsNoVetor;
-	}
-
+	
 	public T getElemento(int indiceElemento) {
 		verificaSeIndiceDoVetorEvalido(indiceElemento);
 		return this.elementos[indiceElemento];
@@ -86,70 +70,7 @@ public class Vetor<T> {
 		return -1;
 	}
 
-	public boolean contains(T elementoProcurado) {
-		return getElemento(elementoProcurado) >= 0;
-	}
-
-	@Override
-	public String toString() {
-		String toString = "[";
-		for (T e : this.elementos) {
-			if (e != null) {
-				toString = toString.concat(e.toString());
-				toString = toString.concat(", ");
-			}
-
-			if (e == null) {
-				toString = toString.substring(0, toString.length() - 2);
-				toString = toString.concat("]");
-				break;
-			}
-
-		}
-		return toString;
-	}
-
-	/**
-	 * @param capacidade
-	 * @throws IllegalArgumentException
-	 */
-	private void verificaCapacidadeVetor(int capacidade) throws IllegalArgumentException {
-		if (capacidade < 1) {
-			throw new IllegalArgumentException("Capacidade do vetor deve ser maior que \"0\".");
-		}
-	}
-
-	private void verificaElementoValido(T object) {
-		if (object == null)
-			throw new IllegalArgumentException("O objeto não pode ser nulo!");
-
-	}
-
-	/**
-	 * 
-	 */
-	private void verificaCapacidadeVetor() {
-		if (quantidadeItemsNoVetor >= CapacidadeMaximaItemsDoVetor - 1) {
-
-			adicionaMaisDezDeCapacidadeTotal();
-		}
-
-	}
-
-	/**
-	 * 
-	 */
-	private void adicionaMaisDezDeCapacidadeTotal() {
-		T[] ts = (T[]) new Object[this.CapacidadeMaximaItemsDoVetor + CAPACIDADE_NOVA];
-		T[] newElements = ts;
-		this.CapacidadeMaximaItemsDoVetor = newElements.length;
-
-		for (int i = 0; i < this.elementos.length; i++) {
-			newElements[i] = this.elementos[i];
-		}
-
-		this.elementos = newElements;
-	}
+	
 
 	/**
 	 * @param indiceElemento
